@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Children } from '../types/props.type'
 
 import { socket, useLoggedIn } from './AuthProvider'
-import { Order, OrderPosition } from '../types/buffet.type'
+import { Order } from '../types/buffet.type'
 import BuffetService from '../services/buffetService'
 
 const OrdersContext = createContext<Order[]>([])
@@ -30,6 +30,7 @@ function BuffetProvider({ children }: Children) {
     function changeOrderStatus(id: number, statusId: number) {
         BuffetService.changeOrderStatus(id, statusId).then((res) => {
             if (res?.error) alert(res.result)
+            getOrders()
         })
     }
 

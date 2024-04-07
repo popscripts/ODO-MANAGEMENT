@@ -63,8 +63,8 @@ export default function AuthProvider({ children }: Children) {
             return response
         }
 
-        await getUserData().then(() => {
-            setLoggedIn(true)
+        await getUserData().then((res) => {
+            if (!res?.error) setLoggedIn(true)
         })
 
         return response

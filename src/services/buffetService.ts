@@ -7,7 +7,7 @@ class BuffetService {
 
     async getOrders() {
         try {
-            const response = await this.httpClient.get('/api/buffet/user')
+            const response = await this.httpClient.get('/api/buffet')
             return response.json()
         } catch (e) {
             console.error(e)
