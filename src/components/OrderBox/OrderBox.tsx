@@ -124,13 +124,13 @@ function OrderBox({ order }: Props) {
                     order.status.name !== 'pickedUp' && (
                         <IconsWrapper>
                             <IconWrapper onClick={cancelOrder}>
-                                <img src={xicon} alt={'x icon'} height={30} />
+                                <img src={xicon} alt={'x icon'} height={20} />
                             </IconWrapper>
                             <IconWrapper onClick={nextStatus}>
                                 <img
                                     src={arrow}
                                     alt={'arrow icon'}
-                                    height={33}
+                                    height={22}
                                 />
                             </IconWrapper>
                         </IconsWrapper>
