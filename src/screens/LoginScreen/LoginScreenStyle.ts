@@ -13,7 +13,7 @@ export const LoginScreenContainer = styled.section`
     align-items: center;
     position: absolute;
     top: 0;
-    z-index: -1;
+    z-index: 0;
 `
 
 export const Logo = styled.img`

@@ -3,11 +3,12 @@ import { colors } from '../../theme/colors'
 import { spacing } from '../../theme/spacing'
 
 export const Background = styled.section`
-    width: 100vw;
     height: 100vh;
     background-color: ${colors.background};
     display: flex;
     padding: 0 50px;
+    position: relative;
+    z-index: 1;
 `
 
 export const Column = styled.div`
