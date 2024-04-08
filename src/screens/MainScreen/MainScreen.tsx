@@ -12,6 +12,7 @@ import {
 import { useOrders } from '../../providers/BuffetProvider'
 import OrderBox from '../../components/OrderBox/OrderBox'
 import { useState } from 'react'
+import { colors } from '../../theme/colors'
 
 function MainScreen() {
     const orders = useOrders()
@@ -33,7 +34,13 @@ function MainScreen() {
                     <TitleRotated>Anulowane</TitleRotated>
                 </LeftDrawerButton>
                 <Column>
-                    <Title>Anulowane</Title>
+                    <Title
+                        style={{
+                            backgroundColor: colors.palette.quaternary100
+                        }}
+                    >
+                        Anulowane
+                    </Title>
                     {orders
                         .filter((order) => order.status.name === 'cancelled')
                         .map((order) => (
@@ -42,7 +49,9 @@ function MainScreen() {
                 </Column>
             </LeftDrawer>
             <Column>
-                <Title>Zamówione</Title>
+                <Title style={{ backgroundColor: colors.palette.tertiary200 }}>
+                    Zamówione
+                </Title>
                 {orders
                     .filter((order) => order.status.name === 'ordered')
                     .map((order) => (
@@ -50,7 +59,9 @@ function MainScreen() {
                     ))}
             </Column>
             <Column>
-                <Title>W realizacji</Title>
+                <Title style={{ backgroundColor: colors.palette.quinary200 }}>
+                    W realizacji
+                </Title>
                 {orders
                     .filter((order) => order.status.name === 'inProgress')
                     .map((order) => (
@@ -58,7 +69,9 @@ function MainScreen() {
                     ))}
             </Column>
             <Column>
-                <Title>Gotowe</Title>
+                <Title style={{ backgroundColor: colors.palette.primary200 }}>
+                    Gotowe
+                </Title>
                 {orders
                     .filter((order) => order.status.name === 'done')
                     .map((order) => (
@@ -70,7 +83,11 @@ function MainScreen() {
                     <TitleRotated2>Odebrane</TitleRotated2>
                 </RightDrawerButton>
                 <Column>
-                    <Title>Odebrane</Title>
+                    <Title
+                        style={{ backgroundColor: colors.palette.secondary200 }}
+                    >
+                        Odebrane
+                    </Title>
                     {orders
                         .filter((order) => order.status.name === 'pickedUp')
                         .map((order) => (

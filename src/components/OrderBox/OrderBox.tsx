@@ -17,6 +17,8 @@ import xicon from '../../assets/icons/xicon.svg'
 import arrow from '../../assets/icons/arrow.svg'
 
 import { useChangeOrderStatus } from '../../providers/BuffetProvider'
+import LoadingIcon from '../LoadingIcon/LoadingIcon'
+import { useState } from 'react'
 
 type Props = {
     order: OrderType
@@ -60,27 +62,42 @@ function getStatusName(name: OrderStatus['name']) {
 function getStatusColor(name: OrderStatus['name']) {
     switch (name) {
         case 'cancelled':
-            return colors.palette.neutral500
+            return colors.palette.quaternary100
         case 'ordered':
             return colors.palette.tertiary200
         case 'done':
             return colors.palette.primary200
         case 'pickedUp':
-            return colors.palette.neutral500
+            return colors.palette.secondary100
         case 'inProgress':
             return colors.palette.quinary200
     }
 }
 
 function OrderBox({ order }: Props) {
+    const [loadX, setLoadX] = useState(false)
+    const [loadArrow, setLoadArrow] = useState(false)
+
     const changeStatus = useChangeOrderStatus()
 
     const cancelOrder = () => {
-        changeStatus(order.id, 4)
+        if (window.confirm('Czy na pewno chcesz anulować zamówienie?')) {
+            setLoadX(true)
+            changeStatus(order.id, 4).then(() =>
+                setTimeout(() => {
+                    setLoadX(false)
+                }, 400)
+            )
+        }
     }
 
     const nextStatus = () => {
-        changeStatus(order.id, order.status.id + 1)
+        setLoadArrow(true)
+        changeStatus(order.id, order.status.id + 1).then(() =>
+            setTimeout(() => {
+                setLoadArrow(false)
+            }, 400)
+        )
     }
     return (
         <Background>
@@ -123,16 +140,29 @@ function OrderBox({ order }: Props) {
                 {order.status.name !== 'cancelled' &&
                     order.status.name !== 'pickedUp' && (
                         <IconsWrapper>
-                            <IconWrapper onClick={cancelOrder}>
-                                <img src={xicon} alt={'x icon'} height={20} />
-                            </IconWrapper>
-                            <IconWrapper onClick={nextStatus}>
-                                <img
-                                    src={arrow}
-                                    alt={'arrow icon'}
-                                    height={22}
-                                />
-                            </IconWrapper>
+                            {loadX ? (
+                                <LoadingIcon />
+                            ) : (
+                                <IconWrapper onClick={cancelOrder}>
+                                    <img
+                                        src={xicon}
+                                        alt={'x icon'}
+                                        height={30}
+                                    />
+                                </IconWrapper>
+                            )}
+
+                            {loadArrow ? (
+                                <LoadingIcon />
+                            ) : (
+                                <IconWrapper onClick={nextStatus}>
+                                    <img
+                                        src={arrow}
+                                        alt={'arrow icon'}
+                                        height={33}
+                                    />
+                                </IconWrapper>
+                            )}
                         </IconsWrapper>
                     )}
             </Row>

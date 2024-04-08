@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../theme/colors'
+import { spacing } from '../../theme/spacing'
 
 export const Background = styled.section`
     width: 100vw;
@@ -66,8 +67,14 @@ export const RightDrawerButton = styled.div`
 `
 
 export const Title = styled.h1`
-    width: 100%;
+    width: fit-content;
+    min-width: 60%;
+    margin: 0 auto ${spacing.xxl} auto;
+    padding: ${spacing.sm};
+    border-bottom-right-radius: ${spacing.xxl};
+    border-bottom-left-radius: ${spacing.xxl};
     text-align: center;
+    background-color: ${colors.palette.neutral600};
 `
 
 export const TitleRotated = styled.h1`

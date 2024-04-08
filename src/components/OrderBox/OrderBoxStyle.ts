@@ -77,6 +77,7 @@ export const IconWrapper = styled.div`
     justify-content: center;
     align-items: center;
     padding: 10px;
+    cursor: pointer;
 
     &:hover {
         opacity: 0.7;

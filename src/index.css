@@ -3,12 +3,20 @@ body {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 * {
   color: #f6f6f6;
   box-sizing: border-box;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: 1px;
+font-variant-caps: all-petite-caps;
 }
 
 /* width */
@@ -30,4 +38,9 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #46465e;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

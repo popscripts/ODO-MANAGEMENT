@@ -17,11 +17,10 @@ export const Button = styled.button`
     background-color: ${colors.palette.overlay22};
     border: 2px solid ${colors.palette.secondary200};
     outline: none;
-    width: 70%;
+    min-width: 70%;
     font-family: 'Inter', sans-serif;
     font-size: ${spacing.md};
     padding: ${spacing.xxs};
-    padding-left: ${spacing.md};
     border-radius: 10px;
     margin: ${spacing.md} auto;
 

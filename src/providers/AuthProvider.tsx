@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react'
+import React, {
+    createContext,
+    ReactNode,
+    useContext,
+    useEffect,
+    useState
+} from 'react'
 import AuthService from '../services/authService'
 import { User } from '../types/auth.type'
 import io from 'socket.io-client'
@@ -64,7 +70,13 @@ export default function AuthProvider({ children }: Children) {
         }
 
         await getUserData().then((res) => {
-            if (!res?.error) setLoggedIn(true)
+            if (!res?.error) {
+                if (res.result.accountType.name === 'cook') {
+                    setLoggedIn(true)
+                } else {
+                    alert('Strona przeznaczona jedynie dla kont typu kucharz')
+                }
+            }
         })
 
         return response
@@ -85,6 +97,20 @@ export default function AuthProvider({ children }: Children) {
             return response
         })
     }
+
+    function joinRoom() {
+        if (userData.accountType) {
+            let data = {
+                accountType: userData.accountType.name,
+                id: userData.id
+            }
+            socket.emit('joinRoom', data)
+        }
+    }
+
+    useEffect(() => {
+        loggedIn && joinRoom()
+    }, [loggedIn])
 
     return (
         <LogInContext.Provider value={logIn}>

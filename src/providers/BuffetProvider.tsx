@@ -7,7 +7,7 @@ import BuffetService from '../services/buffetService'
 
 const OrdersContext = createContext<Order[]>([])
 const ChangeOrderStatusContext = createContext(
-    (id: number, statusId: number) => {}
+    async (id: number, statusId: number) => {}
 )
 
 export function useOrders() {
@@ -27,8 +27,8 @@ function BuffetProvider({ children }: Children) {
         })
     }
 
-    function changeOrderStatus(id: number, statusId: number) {
-        BuffetService.changeOrderStatus(id, statusId).then((res) => {
+    async function changeOrderStatus(id: number, statusId: number) {
+        await BuffetService.changeOrderStatus(id, statusId).then((res) => {
             if (res?.error) alert(res.result)
             getOrders()
         })
