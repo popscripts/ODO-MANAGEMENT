@@ -30,7 +30,7 @@ export const Number = styled.div<NumberProps>`
 `
 
 export const OrderText = styled.div`
-    font-size: ${spacing.md};
+    font-size: ${spacing.nm};
     color: ${colors.text};
     padding-left: ${spacing.sm};
 `

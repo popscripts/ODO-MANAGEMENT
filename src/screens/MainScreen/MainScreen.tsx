@@ -20,11 +20,11 @@ function MainScreen() {
     const [rightPosition, setRightPosition] = useState('-33vw')
 
     const handleLeftPosition = () => {
-        setLeftPosition((prev) => (prev == '-33vw' ? '0' : '-33vw'))
+        setLeftPosition((prev) => (prev === '-33vw' ? '0' : '-33vw'))
     }
 
     const handleRightPosition = () => {
-        setRightPosition((prev) => (prev == '-33vw' ? '0' : '-33vw'))
+        setRightPosition((prev) => (prev === '-33vw' ? '0' : '-33vw'))
     }
 
     return (
@@ -84,7 +84,9 @@ function MainScreen() {
                 </RightDrawerButton>
                 <Column>
                     <Title
-                        style={{ backgroundColor: colors.palette.secondary200 }}
+                        style={{
+                            backgroundColor: colors.palette.secondary200
+                        }}
                     >
                         Odebrane
                     </Title>

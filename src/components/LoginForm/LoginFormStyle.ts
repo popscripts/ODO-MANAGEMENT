@@ -27,6 +27,10 @@ export const Button = styled.button`
     &:hover {
         opacity: 0.8;
     }
+
+    &:active {
+        opacity: 0.5;
+    }
 `
 
 export const Title = styled.h1`

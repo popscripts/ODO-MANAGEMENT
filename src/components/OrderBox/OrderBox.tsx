@@ -83,7 +83,7 @@ function OrderBox({ order }: Props) {
     const cancelOrder = () => {
         if (window.confirm('Czy na pewno chcesz anulować zamówienie?')) {
             setLoadX(true)
-            changeStatus(order.id, 4).then(() =>
+            changeStatus(order.id, 7).then(() =>
                 setTimeout(() => {
                     setLoadX(false)
                 }, 400)
@@ -109,7 +109,7 @@ function OrderBox({ order }: Props) {
                         </Number>
                         <div>
                             {order.OrderPosition.map((position, id) => (
-                                <OrderText>
+                                <OrderText key={id}>
                                     • {getDishName(position.dish.id)} x
                                     {position.amount}
                                 </OrderText>

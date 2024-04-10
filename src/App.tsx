@@ -8,7 +8,6 @@ function App() {
     return (
         <main>
             {loggedIn && <MainScreen />}
-            {/*<MainScreen />*/}
             <LoginScreen />
         </main>
     )
