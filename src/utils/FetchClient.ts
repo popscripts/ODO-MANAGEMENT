@@ -1,4 +1,4 @@
-import { API_URL } from '../config'
+let API_URL = process.env.REACT_APP_API_URL || ''
 
 const FetchClient = {
     async get(endpoint: string) {

@@ -8,8 +8,7 @@ import React, {
 import AuthService from '../services/authService'
 import { User } from '../types/auth.type'
 import io from 'socket.io-client'
-import { API_URL } from '../config'
-export const socket = io(API_URL, {
+export const socket = io(process.env.REACT_APP_SOCKET_URL || '', {
     withCredentials: true
 })
 
@@ -71,7 +70,10 @@ export default function AuthProvider({ children }: Children) {
 
         await getUserData().then((res) => {
             if (!res?.error) {
-                if (res.result.accountType.name === 'cook') {
+                if (
+                    res.result.accountType.name === 'cook' ||
+                    res.result.accountType.name === 'admin'
+                ) {
                     setLoggedIn(true)
                 } else {
                     alert('Strona przeznaczona jedynie dla kont typu kucharz')
